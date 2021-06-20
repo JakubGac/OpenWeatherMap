@@ -10,5 +10,5 @@ import Foundation
 struct Response {
     var data: Data?
     var code: Int?
-    var error: CustomError?
+    var error: Error?
 }

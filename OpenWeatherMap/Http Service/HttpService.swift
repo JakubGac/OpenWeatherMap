@@ -33,7 +33,7 @@ class HttpService: NSObject {
             let response: Response = .init(
                 data: responseData,
                 code: responseCode,
-                error: error as? CustomError
+                error: error
             )
             
             completion(response)

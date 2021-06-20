@@ -18,7 +18,7 @@ class RestManager {
     func performRequest(request: URLRequest, completionHandler: @escaping (Result<Forecast>) -> Void) {
         httpService.process(request: request) { response in
             guard response.error == nil && (200...300).contains(response.code ?? .zero) else {
-                completionHandler(.failure(response.error))
+                completionHandler(.failure(CustomError.responseError))
                 return
             }
             

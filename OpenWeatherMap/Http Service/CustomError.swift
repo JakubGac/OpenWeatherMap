@@ -8,6 +8,15 @@
 import Foundation
 
 enum CustomError: Error {
+    case responseError
     case decodingError
     case noDataInResponse
+    
+    var errorDescription: String {
+        switch self {
+        case .decodingError: return "Decoding Error"
+        case .noDataInResponse: return "Response is empty"
+        case .responseError: return "Something went wrong. Try again later!"
+        }
+    }
 }
