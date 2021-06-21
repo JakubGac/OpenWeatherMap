@@ -95,32 +95,60 @@ final class CityWeatherDetailsViewModel {
                 let hour = Calendar.current.component(.hour, from: Date(timeIntervalSince1970: TimeInterval(data.dt ?? .zero)))
                 return hour >= 3 && hour <= 12
             }.compactMap { $0.main?.temp }
-            let morningTemperature = morningTemperatures.reduce(0.0, +) / Double(morningTemperatures.count)
+            
+            let morningTemperature: Double? = !morningTemperatures.isEmpty
+                ? morningTemperatures.reduce(0.0, +) / Double(morningTemperatures.count)
+                : nil
             
             let dayTemperatures = dayData.filter { data in
                 let hour = Calendar.current.component(.hour, from: Date(timeIntervalSince1970: TimeInterval(data.dt ?? .zero)))
                 return hour > 12 && hour <= 18
             }.compactMap { $0.main?.temp }
-            let dayTemperature = dayTemperatures.reduce(0.0, +) / Double(dayTemperatures.count)
+            
+            let dayTemperature = !dayTemperatures.isEmpty
+                ? dayTemperatures.reduce(0.0, +) / Double(dayTemperatures.count)
+                : nil
             
             let nightTemperatures = dayData.filter { data in
                 let hour = Calendar.current.component(.hour, from: Date(timeIntervalSince1970: TimeInterval(data.dt ?? .zero)))
                 return hour > 18 || hour < 3
             }.compactMap { $0.main?.temp }
-            let nightTemperature = nightTemperatures.reduce(0.0, +) / Double(nightTemperatures.count)
+            
+            let nightTemperature = !nightTemperatures.isEmpty
+                ? nightTemperatures.reduce(0.0, +) / Double(nightTemperatures.count)
+                : nil
+            
+            var currentTemperature: Double?
+            let currentHour = Calendar.current.component(.hour, from: Date())
+            switch currentHour {
+            case 3..<12:
+                currentTemperature = morningTemperature
+            case 12..<18:
+                currentTemperature = dayTemperature
+            default:
+                currentTemperature = nightTemperature
+            }
             
             let minTemperature = dayData.compactMap { $0.main?.temp_min }.min() ?? .zero
             let maxTemperature = dayData.compactMap { $0.main?.temp_max }.max() ?? .zero
             
             let temperatures = dayData.compactMap { $0.main?.temp }
-            let meanTemperature = temperatures.reduce(0.0, +) / Double(temperatures.count)
+            
+            let meanTemperature = !temperatures.isEmpty
+                ? temperatures.reduce(0.0, +) / Double(temperatures.count)
+                : nil
             
             let humidityValues = dayData.compactMap { $0.main?.humidity }
+            
             let minHumidity = humidityValues.min() ?? .zero
             let maxHumidity = humidityValues.max() ?? .zero
-            let meanHumidity = humidityValues.reduce(0, +) / humidityValues.count
+            
+            let meanHumidity = !humidityValues.isEmpty
+                ? humidityValues.reduce(0, +) / humidityValues.count
+                : nil
             
             return .init(
+                currentTemperature: currentTemperature,
                 morningTemperature: morningTemperature,
                 dayTemperature: dayTemperature,
                 nightTemperature: nightTemperature,

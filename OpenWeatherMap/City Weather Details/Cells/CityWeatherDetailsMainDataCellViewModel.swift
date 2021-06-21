@@ -11,16 +11,36 @@ final class CityWeatherDetailsMainDataCellViewModel: CityWeatherDetailsCellViewM
     
     let cityName: String?
     
+    var currentTemperature: String {
+        if let currentTemperature = dayWeatherData.currentTemperature {
+            return String(format: "%.0f°", currentTemperature)
+        } else {
+            return "-"
+        }
+    }
+    
     var morningTemperature: String {
-        return String(format: "%.0f°", dayWeatherData.morningTemperature)
+        if let morningTemperature = dayWeatherData.morningTemperature {
+            return String(format: "%.0f°", morningTemperature)
+        } else {
+            return "-"
+        }
     }
     
     var dayTemperature: String {
-        return String(format: "%.0f°", dayWeatherData.dayTemperature)
+        if let dayTemperature = dayWeatherData.dayTemperature {
+            return String(format: "%.0f°", dayTemperature)
+        } else {
+            return "-"
+        }
     }
     
     var nightTemperature: String {
-        return String(format: "%.0f°", dayWeatherData.nightTemperature)
+        if let nightTemperature = dayWeatherData.nightTemperature {
+            return String(format: "%.0f°", nightTemperature)
+        } else {
+            return "-"
+        }
     }
     
     var minimumTemperature: String {
@@ -32,23 +52,35 @@ final class CityWeatherDetailsMainDataCellViewModel: CityWeatherDetailsCellViewM
     }
     
     var meanTemperature: String {
-        return String(format: "%.0f°", dayWeatherData.meanTemperature)
+        if let meanTemperature = dayWeatherData.meanTemperature {
+            return String(format: "%.0f°", meanTemperature)
+        } else {
+            return "-"
+        }
     }
     
     var humidity: String {
-        return String(format: "%d", dayWeatherData.humidity)
+        if let humidity = dayWeatherData.humidity {
+            return String(format: "%d%%", humidity)
+        } else {
+            return "-"
+        }
     }
     
     var minimumHumidity: String {
-        return String(format: "%d", dayWeatherData.minimumHumidity)
+        return String(format: "%d%%", dayWeatherData.minimumHumidity)
     }
     
     var maximumumidity: String {
-        return String(format: "%d", dayWeatherData.maximumHumidity)
+        return String(format: "%d%%", dayWeatherData.maximumHumidity)
     }
     
     var meanHumidity: String {
-        return String(format: "%d", dayWeatherData.meanHumidity)
+        if let meanHumidity = dayWeatherData.meanHumidity {
+            return String(format: "%d%%", meanHumidity)
+        } else {
+            return "Brak danych"
+        }
     }
     
     private let dayWeatherData: DayWeatherData

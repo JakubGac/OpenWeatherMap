@@ -8,14 +8,15 @@
 import Foundation
 
 struct DayWeatherData {
-    var morningTemperature: Double
-    var dayTemperature: Double
-    var nightTemperature: Double
-    var humidity: Int
+    var currentTemperature: Double?
+    var morningTemperature: Double?
+    var dayTemperature: Double?
+    var nightTemperature: Double?
+    var humidity: Int?
     var minimumTemperature: Double
     var maximumTemperature: Double
-    var meanTemperature: Double
+    var meanTemperature: Double?
     var minimumHumidity: Int
     var maximumHumidity: Int
-    var meanHumidity: Int
+    var meanHumidity: Int?
 }

@@ -30,8 +30,8 @@ final class CityWeatherDetailsMainDataCellView: UITableViewCell {
             .init(
                 string: viewModel?.cityName ?? "",
                 attributes: [
-                    .font: UIFont.systemFont(ofSize: 30.0, weight: .regular),
-                    .foregroundColor: UIColor.black,
+                    .font: UIFont.systemFont(ofSize: 35.0, weight: .regular),
+                    .foregroundColor: UIColor.white,
                 ]
             )
         )
@@ -40,22 +40,10 @@ final class CityWeatherDetailsMainDataCellView: UITableViewCell {
         
         mutableString.append(
             .init(
-                string: viewModel?.dayTemperature ?? "",
+                string: viewModel?.currentTemperature ?? "",
                 attributes: [
                     .font: UIFont.systemFont(ofSize: 45.0, weight: .bold),
-                    .foregroundColor: UIColor.black,
-                ]
-            )
-        )
-        
-        mutableString.append(.init(string: "\n"))
-        
-        mutableString.append(
-            .init(
-                string: String(format: "Rano: %@    W nocy: %@", viewModel?.dayTemperature ?? "", viewModel?.nightTemperature ?? ""),
-                attributes: [
-                    .font: UIFont.systemFont(ofSize: 25.0, weight: .regular),
-                    .foregroundColor: UIColor.black,
+                    .foregroundColor: UIColor.white,
                 ]
             )
         )
@@ -66,8 +54,21 @@ final class CityWeatherDetailsMainDataCellView: UITableViewCell {
             .init(
                 string: String(format: "Wilgotność: %@", viewModel?.humidity ?? ""),
                 attributes: [
-                    .font: UIFont.systemFont(ofSize: 25.0, weight: .regular),
-                    .foregroundColor: UIColor.black,
+                    .font: UIFont.systemFont(ofSize: 30.0, weight: .regular),
+                    .foregroundColor: UIColor.white,
+                ]
+            )
+        )
+        
+        mutableString.append(.init(string: "\n\n"))
+        
+        mutableString.append(
+            .init(
+                
+                string: String(format: "Temp rano: %@\nTemp w ciągu dnia: %@\nTemp w nocy: %@", viewModel?.morningTemperature ?? "", viewModel?.dayTemperature ?? "", viewModel?.nightTemperature ?? ""),
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 20.0, weight: .regular),
+                    .foregroundColor: UIColor.white,
                 ]
             )
         )
@@ -85,7 +86,7 @@ final class CityWeatherDetailsMainDataCellView: UITableViewCell {
                 string: String(format: "Temp min: %@    Temp max: %@    Temp średnia: %@", viewModel?.minimumTemperature ?? "", viewModel?.maximumTemperature ?? "", viewModel?.meanTemperature ?? ""),
                 attributes: [
                     .font: UIFont.systemFont(ofSize: 15.0, weight: .regular),
-                    .foregroundColor: UIColor.black,
+                    .foregroundColor: UIColor.white,
                 ]
             )
         )
@@ -97,7 +98,7 @@ final class CityWeatherDetailsMainDataCellView: UITableViewCell {
                 string: String(format: "Wilgotność min: %@    Wilgotność max: %@    Wilgotność średnia: %@", viewModel?.minimumHumidity ?? "", viewModel?.maximumumidity ?? "", viewModel?.meanHumidity ?? ""),
                 attributes: [
                     .font: UIFont.systemFont(ofSize: 15.0, weight: .regular),
-                    .foregroundColor: UIColor.black,
+                    .foregroundColor: UIColor.white,
                 ]
             )
         )
