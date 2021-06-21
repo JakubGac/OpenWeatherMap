@@ -42,6 +42,12 @@ extension CityWeatherDetailsViewController {
                 mainDataCell.viewModel = cellViewModel as? CityWeatherDetailsMainDataCellViewModel
                 return mainDataCell
             }
+            
+        case is CityWeatherDetailsNextDayDataCellViewModel:
+            if let nextDayDataCell = tableView.dequeueReusableCell(withIdentifier: "CityWeatherDetailsNextDayDataCellIdentifier", for: indexPath) as? CityWeatherDetailsNextDayDataCellView {
+                nextDayDataCell.viewModel = cellViewModel as? CityWeatherDetailsNextDayDataCellViewModel
+                return nextDayDataCell
+            }
         
         default: break
         }

@@ -52,17 +52,24 @@ final class CityWeatherDetailsViewModel {
     
     private func handleSuccessResponse(forecast: Forecast) {
         // sorted by days, first values are for today
-        let dayWeatherData = calculateDayWeatherData(forecast: forecast)
+        var dayWeatherData = calculateDayWeatherData(forecast: forecast)
         
-        if let todayData = dayWeatherData.first {
-            let mainDataCellViewModel: CityWeatherDetailsMainDataCellViewModel = .init(
-                cityName: forecast.city?.name,
-                dayWeatherData: todayData
+        let todayData = dayWeatherData.removeFirst()
+        
+        let mainDataCellViewModel: CityWeatherDetailsMainDataCellViewModel = .init(
+            cityName: forecast.city?.name,
+            dayWeatherData: todayData
+        )
+        
+        cellViewModels.append(mainDataCellViewModel)
+        
+        dayWeatherData.forEach { data in
+            let nextDayDataCellViewModel: CityWeatherDetailsNextDayDataCellViewModel = .init(
+                dayWeatherData: data
             )
             
-            cellViewModels.append(mainDataCellViewModel)
+            cellViewModels.append(nextDayDataCellViewModel)
         }
-        
     }
     
     private func handleFailureResponse(error: CustomError?) {
@@ -148,6 +155,7 @@ final class CityWeatherDetailsViewModel {
                 : nil
             
             return .init(
+                day: day,
                 currentTemperature: currentTemperature,
                 morningTemperature: morningTemperature,
                 dayTemperature: dayTemperature,

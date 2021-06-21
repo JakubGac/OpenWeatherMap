@@ -85,6 +85,32 @@
                                     <outlet property="detailsInfoLabel" destination="reR-VL-aei" id="lit-xw-wE9"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityWeatherDetailsNextDayDataCellIdentifier" rowHeight="127" id="Jza-Fo-YKr" customClass="CityWeatherDetailsNextDayDataCellView" customModule="OpenWeatherMap" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="298" width="414" height="127"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jza-Fo-YKr" id="y74-uL-iFj">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="127"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2j-x2-FSO">
+                                            <rect key="frame" x="20" y="11" width="374" height="105"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="g2j-x2-FSO" firstAttribute="leading" secondItem="y74-uL-iFj" secondAttribute="leadingMargin" id="L4f-Hw-4ne"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="g2j-x2-FSO" secondAttribute="bottom" id="LUp-oq-6b9"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="g2j-x2-FSO" secondAttribute="trailing" id="mna-dh-NGs"/>
+                                        <constraint firstItem="g2j-x2-FSO" firstAttribute="top" secondItem="y74-uL-iFj" secondAttribute="topMargin" id="v4K-4P-fHY"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="infoLabel" destination="g2j-x2-FSO" id="VnM-5E-ftR"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="sXu-Bs-xhj" id="hcx-IC-dta"/>

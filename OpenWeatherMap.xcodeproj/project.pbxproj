@@ -36,6 +36,8 @@
 		27A39FB9267BF0F600F325DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27A39FB7267BF0F600F325DA /* Main.storyboard */; };
 		27A39FBB267BF0FD00F325DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27A39FBA267BF0FD00F325DA /* Assets.xcassets */; };
 		27A39FBE267BF0FD00F325DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27A39FBC267BF0FD00F325DA /* LaunchScreen.storyboard */; };
+		27C0917626810D46005E139D /* CityWeatherDetailsNextDayDataCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C0917526810D46005E139D /* CityWeatherDetailsNextDayDataCellView.swift */; };
+		27C0917A26810D4C005E139D /* CityWeatherDetailsNextDayDataCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C0917926810D4C005E139D /* CityWeatherDetailsNextDayDataCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		27A39FBA267BF0FD00F325DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27A39FBD267BF0FD00F325DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27A39FBF267BF0FD00F325DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27C0917526810D46005E139D /* CityWeatherDetailsNextDayDataCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherDetailsNextDayDataCellView.swift; sourceTree = "<group>"; };
+		27C0917926810D4C005E139D /* CityWeatherDetailsNextDayDataCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherDetailsNextDayDataCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,8 +129,8 @@
 		27A1B2A2267FD6D0005C286F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				27A1B2A3267FD6EB005C286F /* CityWeatherDetailsMainDataCellView.swift */,
-				27A1B2A6267FD6F1005C286F /* CityWeatherDetailsMainDataCellViewModel.swift */,
+				27C0917426810D27005E139D /* Next Days Data */,
+				27C0917326810D1C005E139D /* Main Data */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -182,6 +186,24 @@
 				27A39FBF267BF0FD00F325DA /* Info.plist */,
 			);
 			path = OpenWeatherMap;
+			sourceTree = "<group>";
+		};
+		27C0917326810D1C005E139D /* Main Data */ = {
+			isa = PBXGroup;
+			children = (
+				27A1B2A3267FD6EB005C286F /* CityWeatherDetailsMainDataCellView.swift */,
+				27A1B2A6267FD6F1005C286F /* CityWeatherDetailsMainDataCellViewModel.swift */,
+			);
+			path = "Main Data";
+			sourceTree = "<group>";
+		};
+		27C0917426810D27005E139D /* Next Days Data */ = {
+			isa = PBXGroup;
+			children = (
+				27C0917526810D46005E139D /* CityWeatherDetailsNextDayDataCellView.swift */,
+				27C0917926810D4C005E139D /* CityWeatherDetailsNextDayDataCellViewModel.swift */,
+			);
+			path = "Next Days Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +285,7 @@
 				27A1B288267FD0C4005C286F /* MainWeatherData.swift in Sources */,
 				27A1B2A7267FD6F1005C286F /* CityWeatherDetailsMainDataCellViewModel.swift in Sources */,
 				27A1B2AB267FDBC7005C286F /* RequestManager.swift in Sources */,
+				27C0917A26810D4C005E139D /* CityWeatherDetailsNextDayDataCellViewModel.swift in Sources */,
 				27A1B294267FD0FE005C286F /* PartOfDay.swift in Sources */,
 				27A1B285267FD0B4005C286F /* Weather.swift in Sources */,
 				27A1B27F267FD099005C286F /* City.swift in Sources */,
@@ -279,6 +302,7 @@
 				27A1B28E267FD0E1005C286F /* Clouds.swift in Sources */,
 				27A1B2BB267FF006005C286F /* UIViewController+Ext.swift in Sources */,
 				27A39FB4267BF0F600F325DA /* SceneDelegate.swift in Sources */,
+				27C0917626810D46005E139D /* CityWeatherDetailsNextDayDataCellView.swift in Sources */,
 				27A1B26F267FAEDF005C286F /* HttpService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
