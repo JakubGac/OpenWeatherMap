@@ -9,7 +9,7 @@ import UIKit
 
 final class CityWeatherDetailsViewController: UITableViewController {
     
-    var viewModel: CityWeatherDetailsViewModel = .init()
+    var viewModel: CityWeatherDetailsViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +18,7 @@ final class CityWeatherDetailsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.refreshData()
+        viewModel?.refreshData()
     }
     
     private func setupView() {
@@ -30,11 +30,11 @@ final class CityWeatherDetailsViewController: UITableViewController {
 // MARK: - UITableViewDelegate
 extension CityWeatherDetailsViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.cellViewModels.count
+        return viewModel?.cellViewModels.count ?? .zero
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellViewModel = viewModel.cellViewModels[indexPath.row]
+        let cellViewModel = viewModel?.cellViewModels[indexPath.row]
         
         switch cellViewModel {
         case is CityWeatherDetailsMainDataCellViewModel:

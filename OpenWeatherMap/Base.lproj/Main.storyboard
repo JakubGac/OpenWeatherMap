@@ -7,20 +7,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--City Selection View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OpenWeatherMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CitySelectionViewController" customModule="OpenWeatherMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q14-1w-8Jv">
+                                <rect key="frame" x="0.0" y="336" width="414" height="224"/>
+                            </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wh5-SG-rZU">
-                                <rect key="frame" x="103.5" y="423" width="207" height="50"/>
+                                <rect key="frame" x="103.5" y="647" width="207" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="RTg-pF-cUd"/>
                                 </constraints>
-                                <state key="normal" title="Warsaw"/>
+                                <state key="normal" title="Pokaż pogodę">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="sXu-Bs-xhj" kind="show" identifier="CityWeatherDetails" id="1zy-ZN-Gaw"/>
                                 </connections>
@@ -29,11 +34,19 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.22012543679999999" green="0.58725291489999998" blue="0.75420451160000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="q14-1w-8Jv" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.25" id="5ZL-Ul-N8D"/>
                             <constraint firstItem="wh5-SG-rZU" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="Vvr-qV-qiq"/>
-                            <constraint firstItem="wh5-SG-rZU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Zf9-Yd-GYJ"/>
+                            <constraint firstItem="wh5-SG-rZU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.5" id="Zf9-Yd-GYJ"/>
                             <constraint firstItem="wh5-SG-rZU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iRa-nK-P1q"/>
+                            <constraint firstItem="q14-1w-8Jv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="p8C-pw-XYH"/>
+                            <constraint firstItem="q14-1w-8Jv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ucI-gN-bUg"/>
+                            <constraint firstItem="q14-1w-8Jv" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="xYH-Aj-aIP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cityPicker" destination="q14-1w-8Jv" id="qLr-ek-ygo"/>
+                        <outlet property="showWeatherButton" destination="wh5-SG-rZU" id="scj-RR-g2p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -72,7 +85,6 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="reR-VL-aei" secondAttribute="bottom" constant="24" id="6Nb-iQ-BKG"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="sWS-cr-LMr" secondAttribute="trailing" id="DKd-c8-3h1"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="reR-VL-aei" secondAttribute="trailing" id="Syo-fD-fnH"/>
-                                        <constraint firstItem="sWS-cr-LMr" firstAttribute="centerX" secondItem="T6P-J1-P3N" secondAttribute="centerX" id="T36-vG-PbV"/>
                                         <constraint firstItem="reR-VL-aei" firstAttribute="leading" secondItem="T6P-J1-P3N" secondAttribute="leadingMargin" id="ZEy-BB-aod"/>
                                         <constraint firstItem="sWS-cr-LMr" firstAttribute="top" secondItem="T6P-J1-P3N" secondAttribute="top" constant="150" id="bT5-oB-rOc"/>
                                         <constraint firstItem="sWS-cr-LMr" firstAttribute="leading" secondItem="T6P-J1-P3N" secondAttribute="leadingMargin" id="fbz-Zs-4Pk"/>
@@ -85,7 +97,7 @@
                                     <outlet property="detailsInfoLabel" destination="reR-VL-aei" id="lit-xw-wE9"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityWeatherDetailsNextDayDataCellIdentifier" rowHeight="127" id="Jza-Fo-YKr" customClass="CityWeatherDetailsNextDayDataCellView" customModule="OpenWeatherMap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CityWeatherDetailsNextDayDataCellIdentifier" rowHeight="127" id="Jza-Fo-YKr" customClass="CityWeatherDetailsNextDayDataCellView" customModule="OpenWeatherMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="298" width="414" height="127"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jza-Fo-YKr" id="y74-uL-iFj">
@@ -121,7 +133,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CJw-ae-0TO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="805.79710144927537" y="93.75"/>
+            <point key="canvasLocation" x="899" y="88"/>
         </scene>
     </scenes>
 </document>

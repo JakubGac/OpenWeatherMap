@@ -20,13 +20,17 @@ final class CityWeatherDetailsViewModel {
     
     var cellViewModels: [CityWeatherDetailsCellViewModel] = []
     
+    private let city: CityListModel
     private let restManager: RestManager = .init()
     
+    init(city: CityListModel) {
+        self.city = city
+    }
     
     func refreshData() {
         let forecastRequest: URLRequest? = RequestManager.createForecastRequest(
-            cityName: "Warsaw",
-            countryCode: "pl"
+            cityName: city.name,
+            countryCode: city.country
         )
         
         guard let safeForecastRequest = forecastRequest else { return }
