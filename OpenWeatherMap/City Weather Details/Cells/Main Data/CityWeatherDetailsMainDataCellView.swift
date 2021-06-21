@@ -8,9 +8,10 @@
 import UIKit
 
 final class CityWeatherDetailsMainDataCellView: UITableViewCell {
-    
+        
     @IBOutlet weak var baseInfoLabel: UILabel!
     @IBOutlet weak var detailsInfoLabel: UILabel!
+    @IBOutlet weak var currentWeatherImageView: UIImageView!
     
     weak var viewModel: CityWeatherDetailsMainDataCellViewModel? {
         didSet {
@@ -19,6 +20,8 @@ final class CityWeatherDetailsMainDataCellView: UITableViewCell {
     }
     
     private func setCell() {
+        currentWeatherImageView.image = viewModel?.currentWeatherImage
+        
         baseInfoLabel.attributedText = createBaseInfoMutableString()
         detailsInfoLabel.attributedText = createDetailsAttributedString()
     }

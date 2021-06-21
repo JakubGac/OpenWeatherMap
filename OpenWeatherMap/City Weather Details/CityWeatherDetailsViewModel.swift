@@ -95,60 +95,73 @@ final class CityWeatherDetailsViewModel {
         ]
         
         let dayWeatherData: [DayWeatherData] = days.compactMap { day -> DayWeatherData in
-            let dayData = weatherList.filter { Calendar.current.isDate(day, inSameDayAs: Date(timeIntervalSince1970: TimeInterval($0.dt ?? .zero))) }
+            let allDayData = weatherList.filter { Calendar.current.isDate(day, inSameDayAs: Date(timeIntervalSince1970: TimeInterval($0.dt ?? .zero))) }
             
             // 03:00 - 12:00 -> morning
             // 12:01 - 18:00 -> day
             // 18:01 - 02:59 -> night
             
-            let morningTemperatures = dayData.filter { data in
+            let morningData = allDayData.filter { data in
                 let hour = Calendar.current.component(.hour, from: Date(timeIntervalSince1970: TimeInterval(data.dt ?? .zero)))
                 return hour >= 3 && hour <= 12
-            }.compactMap { $0.main?.temp }
+            }
+            
+            let morningTemperatures = morningData.compactMap { $0.main?.temp }
             
             let morningTemperature: Double? = !morningTemperatures.isEmpty
                 ? morningTemperatures.reduce(0.0, +) / Double(morningTemperatures.count)
                 : nil
             
-            let dayTemperatures = dayData.filter { data in
+            let dayData = allDayData.filter { data in
                 let hour = Calendar.current.component(.hour, from: Date(timeIntervalSince1970: TimeInterval(data.dt ?? .zero)))
                 return hour > 12 && hour <= 18
-            }.compactMap { $0.main?.temp }
+            }
+            
+            let dayTemperatures = dayData.compactMap { $0.main?.temp }
             
             let dayTemperature = !dayTemperatures.isEmpty
                 ? dayTemperatures.reduce(0.0, +) / Double(dayTemperatures.count)
                 : nil
             
-            let nightTemperatures = dayData.filter { data in
+            let nightData = allDayData.filter { data in
                 let hour = Calendar.current.component(.hour, from: Date(timeIntervalSince1970: TimeInterval(data.dt ?? .zero)))
                 return hour > 18 || hour < 3
-            }.compactMap { $0.main?.temp }
+            }
+            
+            let nightTemperatures = nightData.compactMap { $0.main?.temp }
             
             let nightTemperature = !nightTemperatures.isEmpty
                 ? nightTemperatures.reduce(0.0, +) / Double(nightTemperatures.count)
                 : nil
             
             var currentTemperature: Double?
+            var currentWeather: WeatherDetails?
             let currentHour = Calendar.current.component(.hour, from: Date())
+            
             switch currentHour {
             case 3..<12:
                 currentTemperature = morningTemperature
+                currentWeather = morningData.first?.weather?.first
+                
             case 12..<18:
                 currentTemperature = dayTemperature
+                currentWeather = dayData.first?.weather?.first
+                
             default:
                 currentTemperature = nightTemperature
+                currentWeather = nightData.first?.weather?.first
             }
             
-            let minTemperature = dayData.compactMap { $0.main?.temp_min }.min() ?? .zero
-            let maxTemperature = dayData.compactMap { $0.main?.temp_max }.max() ?? .zero
+            let minTemperature = allDayData.compactMap { $0.main?.temp_min }.min() ?? .zero
+            let maxTemperature = allDayData.compactMap { $0.main?.temp_max }.max() ?? .zero
             
-            let temperatures = dayData.compactMap { $0.main?.temp }
+            let temperatures = allDayData.compactMap { $0.main?.temp }
             
             let meanTemperature = !temperatures.isEmpty
                 ? temperatures.reduce(0.0, +) / Double(temperatures.count)
                 : nil
             
-            let humidityValues = dayData.compactMap { $0.main?.humidity }
+            let humidityValues = allDayData.compactMap { $0.main?.humidity }
             
             let minHumidity = humidityValues.min() ?? .zero
             let maxHumidity = humidityValues.max() ?? .zero
@@ -159,6 +172,7 @@ final class CityWeatherDetailsViewModel {
             
             return .init(
                 day: day,
+                currentWeather: currentWeather,
                 currentTemperature: currentTemperature,
                 morningTemperature: morningTemperature,
                 dayTemperature: dayTemperature,

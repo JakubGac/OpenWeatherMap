@@ -9,6 +9,7 @@ import Foundation
 
 struct DayWeatherData {
     var day: Date
+    var currentWeather: WeatherDetails?
     var currentTemperature: Double?
     var morningTemperature: Double?
     var dayTemperature: Double?

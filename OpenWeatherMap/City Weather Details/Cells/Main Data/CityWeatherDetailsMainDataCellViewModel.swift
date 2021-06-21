@@ -5,11 +5,28 @@
 //  Created by Jakub Gac on 20/06/2021.
 //
 
-import Foundation
+import UIKit
 
 final class CityWeatherDetailsMainDataCellViewModel: CityWeatherDetailsCellViewModel {
     
     let cityName: String?
+    
+    var currentWeatherImage: UIImage? {
+        var imageName: String = ""
+        
+        switch dayWeatherData.currentWeather?.id ?? .zero {
+        case 200...299: imageName = "cloud.bolt.rain"
+        case 300...399: imageName = "cloud.drizzle"
+        case 500...599: imageName = "cloud.rain"
+        case 600...699: imageName = "cloud.snow"
+        case 700...799: imageName = "aqi.high"
+        case 800: imageName = "sun.max"
+        case 801...899: imageName = "cloud"
+        default: return nil
+        }
+        
+        return UIImage(systemName: imageName)
+    }
     
     var currentTemperature: String {
         if let currentTemperature = dayWeatherData.currentTemperature {
