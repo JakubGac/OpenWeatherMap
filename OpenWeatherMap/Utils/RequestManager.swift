@@ -11,15 +11,15 @@ final class RequestManager {
     
     private static let apiKey: String = BundleVariablesManager.getApiKey()
     
-    static func createForecastRequest(cityName: String, countryCode: String) -> URLRequest? {
+    static func createForecastRequest(cityId: Int) -> URLRequest? {
         var urlComponents: URLComponents = .init()
         urlComponents.scheme = Constants.scheme
         urlComponents.host = Constants.host
         urlComponents.path = Constants.forecastPath
         urlComponents.queryItems = [
             .init(
-                name: Constants.cityNameQueryName,
-                value: String(format: "%@,%@", cityName, countryCode)
+                name: Constants.cityIDQueryName,
+                value: String(format: "%d", cityId)
             ),
             .init(
                 name: Constants.languageQueryName,
@@ -47,7 +47,7 @@ extension RequestManager {
         static let scheme: String = "https"
         static let host: String = "api.openweathermap.org"
         static let forecastPath: String = "/data/2.5/forecast"
-        static let cityNameQueryName: String = "q"
+        static let cityIDQueryName: String = "id"
         static let languageQueryName: String = "lang"
         static let unitsQueryName: String = "units"
         static let appIDQueryName: String = "appid"

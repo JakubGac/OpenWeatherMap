@@ -29,8 +29,7 @@ final class CityWeatherDetailsViewModel {
     
     func refreshData() {
         let forecastRequest: URLRequest? = RequestManager.createForecastRequest(
-            cityName: city.name,
-            countryCode: city.country
+            cityId: city.id
         )
         
         guard let safeForecastRequest = forecastRequest else { return }
